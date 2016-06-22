@@ -27,7 +27,8 @@ Simple setup for a React.js workshop
 Setup
 =====
 
-Run the following command in the root of the checkout::
+Run the following command in the root of the checkout (Requires vagrant &
+ansible)::
 
     vagrant up --provision
 
