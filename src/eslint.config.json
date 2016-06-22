@@ -1,0 +1,20 @@
+{
+    "extends": ["standard", "react"],
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+    },
+    "env": {
+        "es6": true
+    },
+    "rules": {
+        "indent": [2, 4],
+        "comma-dangle": [2, "always-multiline"],
+        "prefer-reflect": 0,
+        "operator-linebreak": [2, "after", { "overrides": { ":": "before" } }]
+    },
+    "globals": {
+        "window": true,
+        "jQuery": true
+    }
+}
