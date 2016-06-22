@@ -1,7 +1,7 @@
 {
   "name": "ReactDemo",
   "description": "React.js demo workshop",
-  "repository": "",
+  "repository": "https://github.com/QafooTraining/react.git",
   "dependencies": {
     "babel-core": "5.8.34",
     "babel-eslint": "4.1.6",
