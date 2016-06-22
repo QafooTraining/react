@@ -6,3 +6,15 @@
     - tree
     - vim
     - php-xdebug
+
+- name: "Check NPM intialized"
+  stat: path={{ root }}/node_modules
+  become: yes
+  become_user: "{{ web_user }}"
+  register: installed
+
+- name: "Install NPM packages"
+  command: chdir={{ root }} npm install
+  become: yes
+  become_user: "{{ web_user }}"
+  when: installed.stat.exists == False
