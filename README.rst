@@ -2,15 +2,21 @@
 Agenda
 ======
 
+Simple setup for a React.js workshop
+
 * Setup
 
 * JSX
+
+  * https://facebook.github.io/react/docs/displaying-data.html
 
 * State
 
 * Props
 
 * Lifecycle
+
+  * https://facebook.github.io/react/docs/component-specs.html
 
 * Ajax
 
