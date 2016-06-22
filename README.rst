@@ -31,7 +31,7 @@ Run the following command in the root of the checkout::
 
     vagrant up --provision
 
-Then add the following line to you hosts config (eg. ``/etc/hosts``)::
+Then add the following line to you hosts configuration (eg. ``/etc/hosts``)::
 
     33.33.33.20 react.js react.vm
 
@@ -58,7 +58,7 @@ required tools. Thus you can run the following commands in
 
     grunt package
 
-The box also has PHP installed so that you can create a simpel webservice to
+The box also has PHP installed so that you can create a simple webservice to
 interact with you React application.
 
 ..
