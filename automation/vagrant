@@ -1,0 +1,23 @@
+vm ansible_ssh_host=33.33.33.20 ansible_ssh_user=vagrant
+
+[base]
+vm
+
+[web]
+vm
+
+[development]
+vm
+
+[all:vars]
+host=react.vm
+
+env=dev
+
+php_user=vagrant
+web_user=vagrant
+
+web_dir=/var/www
+log_dir=/var/log/react
+
+deploy_password=vagrant

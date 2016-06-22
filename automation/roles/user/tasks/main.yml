@@ -1,0 +1,35 @@
+---
+- name: Add user with password
+  user: name={{ user }} home={{ home }} password={{ password|password_hash('sha512') }} shell={{ shell }} state=present
+  when: not((password is undefined) or (password is none) or (password == ''))
+
+- name: Add user without password
+  user: name={{ user }} home={{ home }} shell={{ shell }} state=present
+  when: >
+    (
+        (user != "vagrant") and (
+            (password is undefined) or
+            (password is none) or
+            (password == '')
+        )
+    )
+
+- name: Add authorized user keys
+  authorized_key: 'user={{ user }} key={{ lookup("file", item) }}'
+  with_items: '{{ ssh_keys }}'
+
+- name: "Copy bashrc"
+  template: >
+    src=bashrc.j2
+    dest={{ home }}/.bashrc
+    owner={{ user }}
+    group={{ user }}
+    mode=644
+
+- name: "Select editor"
+  copy: >
+    src=selected_editor
+    dest={{ home }}/.selected_editor
+    owner={{ user }}
+    group={{ user }}
+    mode=644

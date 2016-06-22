@@ -1,0 +1,7 @@
+---
+dependencies:
+  - git
+  - php7
+  - role: nginx
+    nginx_vhosts:
+      - "10_{{ domain }}"

@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: nginx
+    nginx_vhosts:
+      - "10_{{ domain }}"

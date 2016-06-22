@@ -1,0 +1,8 @@
+---
+- name: "Install Java (Debian)"
+  include: debian.yml
+  when: "'{{ ansible_os_family }}' == 'Debian'"
+
+- name: "Install Ant (Gentoo)"
+  portage: package=dev-java/ant-core state=present
+  when: "'{{ ansible_os_family }}' == 'Gentoo'"

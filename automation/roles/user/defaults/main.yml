@@ -1,0 +1,7 @@
+---
+ssh_keys:
+  - kore.pub
+home: "/home/{{ user }}"
+shell: /bin/bash
+password: null
+type: Live

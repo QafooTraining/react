@@ -1,0 +1,8 @@
+---
+allow_duplicates: yes
+dependencies:
+  - role: user
+    user: "{{ web_user }}"
+    home: "{{ web_dir }}"
+    ssh_keys:
+      - kore.pub

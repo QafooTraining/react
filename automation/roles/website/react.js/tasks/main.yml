@@ -1,0 +1,16 @@
+---
+- name: "Add nodesource key for apt"
+  apt_key: keyserver=keyserver.ubuntu.com id=68576280
+
+- name: "Add nodesource repository"
+  apt_repository: repo='deb https://deb.nodesource.com/node_4.x precise main' state=present
+
+- name: "Install Node.JS(tm)"
+  apt: pkg=nodejs state=latest
+
+- name: "Install global NPM dependencies"
+  npm: name="{{ item }}" global=yes state=present executable="/usr/bin/npm"
+  with_items:
+      - grunt-cli
+
+# TODO: Initialize application, if necessary…

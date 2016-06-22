@@ -1,0 +1,42 @@
+---
+- name: Install Nginx (Debian)
+  include: debian.yml
+  when: "'{{ ansible_os_family }}' == 'Debian'"
+
+- name: Delete possible default Nginx vhosts
+  file: path={{ nginx_vhost_directory }}/{{ item }} state=absent
+  with_items:
+    - default
+    - www.domain.de.conf.example
+  notify: Restart Nginx
+
+- name: Create Nginx directories
+  file: >
+    path=/etc/nginx/{{ item }}
+    owner={{ web_user }}
+    group={{ web_user }}
+    state=directory
+  with_items:
+    - includes.d
+  notify: Restart Nginx
+
+- name: Copy php-fpm.conf to /etc/nginx/includes.d
+  template: >
+    src={{ item }}.conf.j2
+    dest=/etc/nginx/includes.d/{{ item }}.conf
+    owner={{ web_user }}
+    group={{ web_user }}
+    mode=0644
+  with_items:
+    - php-fpm
+  notify: Restart Nginx
+
+- name: "{{ domain }} | Generate Vhosts"
+  template:
+    src={{ item }}.conf.j2
+    dest={{ nginx_vhost_directory }}/{{ item }}.conf
+    owner={{ web_user }}
+    group={{ web_user }}
+    mode=0644
+  with_items: '{{ nginx_vhosts }}'
+  notify: Restart Nginx

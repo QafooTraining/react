@@ -1,0 +1,19 @@
+---
+- name: Provision Basic setup
+  hosts: base
+  become: yes
+  roles:
+    - update
+    - tools
+
+- name: Provision application servers
+  hosts: web
+  become: yes
+  roles:
+    - website/react.js
+
+- name: Provision development servers
+  hosts: development
+  become: yes
+  roles:
+    - website/react.vm

@@ -1,0 +1,5 @@
+---
+domain: "react.js"
+subdomains: ["www.react.js", "mail.react.js"]
+root: "{{ web_dir }}/{{ domain }}/"
+webroot: "{{ root }}/htdocs"

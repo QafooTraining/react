@@ -1,0 +1,4 @@
+---
+nginx_vhost_directory: /etc/nginx/sites-enabled
+nginx_user: www-data
+nginx_vhosts: []

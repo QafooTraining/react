@@ -1,0 +1,68 @@
+---
+- name: Add PHP 7 repository
+  apt_repository: repo='ppa:ondrej/php'
+
+- name: Install PHP
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - php7.0
+    - php7.0-common
+    - php7.0-cli
+    - php7.0-fpm
+    - php7.0-intl
+    - php7.0-xsl
+    - php7.0-curl
+    - php7.0-gd
+    - php7.0-mysql
+    - php7.0-mbstring
+    - php-imagick
+  when: "'{{ ansible_os_family }}' == 'Debian'"
+  notify: Restart PHP-FPM
+
+- name: PECL Installer Directory
+  file: path=/opt/php_extensions_build state=directory
+
+- name: Configure PHP FPM
+  template: src=php-fpm.ini.j2 dest={{ php_conf_directory }}/fpm/php.ini owner=root group=root mode=0644
+
+- name: Configure PHP CLI
+  template: src=php-cli.ini.j2 dest={{ php_conf_directory }}/cli/php.ini owner=root group=root mode=0644
+
+- name: Configure PHP-CLI
+  template: src={{ item }} dest={{ php_cli_confd_directory }}/{{ item }} owner=root group=root mode=0644
+  with_items:
+    - 10-memory_limit.ini
+    - 30-timezone.ini
+    - 40-errors.ini
+
+- name: Configure PHP-FPM on Debian OS Family
+  template: src={{ item }} dest={{ php_fpm_confd_directory }}/{{ item }} owner=root group=root mode=0644
+  with_items:
+    - 10-memory_limit.ini
+    - 30-timezone.ini
+    - 40-errors.ini
+  notify: Restart PHP-FPM
+
+- name: Create php-fpm.conf
+  template: src=fpm.conf dest={{ php_fpm_pool_file }} owner=root group=root mode=0644
+  notify: Restart PHP-FPM
+
+- name: Remove orphan PHP-FPM pool.d directory
+  file: >
+    path=/etc/php7.0/fpm/pool.d
+    state=absent
+  notify: Restart PHP-FPM
+  when: "'{{ ansible_os_family }}' == 'Debian'"
+
+- name: "Install Composer"
+  get_url: >
+    dest=/opt/composer.phar
+    url=https://getcomposer.org/composer.phar
+    mode=0755
+    validate_certs=no
+
+- name: "Link Composer"
+  file: >
+    state=link
+    src=/opt/composer.phar
+    dest=/usr/local/bin/composer
