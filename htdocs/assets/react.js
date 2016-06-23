@@ -11761,11 +11761,15 @@
 	
 	var _historyLibUseBasename2 = _interopRequireDefault(_historyLibUseBasename);
 	
-	var _wordJsx = __webpack_require__(267);
+	var _layoutJsx = __webpack_require__(267);
+	
+	var _layoutJsx2 = _interopRequireDefault(_layoutJsx);
+	
+	var _wordJsx = __webpack_require__(273);
 	
 	var _wordJsx2 = _interopRequireDefault(_wordJsx);
 	
-	var _wordListJsx = __webpack_require__(268);
+	var _wordListJsx = __webpack_require__(274);
 	
 	var _wordListJsx2 = _interopRequireDefault(_wordListJsx);
 	
@@ -11776,8 +11780,8 @@
 	_reactDom2["default"].render(_react2["default"].createElement(
 	    _reactRouter.Router,
 	    { history: history },
-	    _react2["default"].createElement(_reactRouter.Route, { path: "/", component: _wordListJsx2["default"] }),
-	    _react2["default"].createElement(_reactRouter.Route, { path: "/word", component: _wordJsx2["default"] })
+	    _react2["default"].createElement(_reactRouter.Route, { path: "/", component: _layoutJsx2["default"], subcomponent: _wordListJsx2["default"] }),
+	    _react2["default"].createElement(_reactRouter.Route, { path: "/word", component: _layoutJsx2["default"], subcomponent: _wordJsx2["default"] })
 	), document.getElementById('content'));
 
 /***/ },
@@ -38440,37 +38444,6 @@
 /* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-	
-	var _react = __webpack_require__(28);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var Word = _react2["default"].createClass({
-	    displayName: "Word",
-	
-	    render: function render() {
-	        return _react2["default"].createElement(
-	            "h1",
-	            null,
-	            this.props.location.query.word
-	        );
-	    }
-	});
-	
-	exports["default"] = Word;
-	module.exports = exports["default"];
-
-/***/ },
-/* 268 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/* WEBPACK VAR INJECTION */(function(jQuery) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -38483,18 +38456,18 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactAddonsLinkedStateMixin = __webpack_require__(269);
+	var _reactAddonsLinkedStateMixin = __webpack_require__(268);
 	
 	var _reactAddonsLinkedStateMixin2 = _interopRequireDefault(_reactAddonsLinkedStateMixin);
 	
 	var _reactRouter = __webpack_require__(186);
 	
-	var _underscore = __webpack_require__(273);
+	var _underscore = __webpack_require__(272);
 	
 	var _underscore2 = _interopRequireDefault(_underscore);
 	
-	var WordList = _react2["default"].createClass({
-	    displayName: "WordList",
+	var Layout = _react2["default"].createClass({
+	    displayName: "Layout",
 	
 	    mixins: [_reactAddonsLinkedStateMixin2["default"]],
 	
@@ -38580,46 +38553,24 @@
 	                        )
 	                    )
 	                ),
-	                _react2["default"].createElement(
-	                    "div",
-	                    { className: "row" },
-	                    _react2["default"].createElement(
-	                        "div",
-	                        { className: "col-md-12" },
-	                        _react2["default"].createElement(
-	                            "ul",
-	                            null,
-	                            _underscore2["default"].map(this.state.words, function (word) {
-	                                return _react2["default"].createElement(
-	                                    "li",
-	                                    { key: word },
-	                                    _react2["default"].createElement(
-	                                        _reactRouter.Link,
-	                                        { to: "/word", query: { word: word } },
-	                                        word
-	                                    )
-	                                );
-	                            })
-	                        )
-	                    )
-	                )
+	                _react2["default"].createElement(this.props.route.subcomponent, this.props)
 	            )
 	        );
 	    }
 	});
 	
-	exports["default"] = WordList;
+	exports["default"] = Layout;
 	module.exports = exports["default"];
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
 
 /***/ },
-/* 269 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(270);
+	module.exports = __webpack_require__(269);
 
 /***/ },
-/* 270 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -38636,8 +38587,8 @@
 	
 	'use strict';
 	
-	var ReactLink = __webpack_require__(271);
-	var ReactStateSetters = __webpack_require__(272);
+	var ReactLink = __webpack_require__(270);
+	var ReactStateSetters = __webpack_require__(271);
 	
 	/**
 	 * A simple mixin around ReactLink.forState().
@@ -38660,7 +38611,7 @@
 	module.exports = LinkedStateMixin;
 
 /***/ },
-/* 271 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -38734,7 +38685,7 @@
 	module.exports = ReactLink;
 
 /***/ },
-/* 272 */
+/* 271 */
 /***/ function(module, exports) {
 
 	/**
@@ -38843,7 +38794,7 @@
 	module.exports = ReactStateSetters;
 
 /***/ },
-/* 273 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscore.js 1.8.3
@@ -40395,6 +40346,123 @@
 	  }
 	}.call(this));
 
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	var _react = __webpack_require__(28);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var Word = _react2["default"].createClass({
+	    displayName: "Word",
+	
+	    render: function render() {
+	        return _react2["default"].createElement(
+	            "h1",
+	            null,
+	            this.props.location.query.word
+	        );
+	    }
+	});
+	
+	exports["default"] = Word;
+	module.exports = exports["default"];
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+	
+	var _react = __webpack_require__(28);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactAddonsLinkedStateMixin = __webpack_require__(268);
+	
+	var _reactAddonsLinkedStateMixin2 = _interopRequireDefault(_reactAddonsLinkedStateMixin);
+	
+	var _reactRouter = __webpack_require__(186);
+	
+	var _underscore = __webpack_require__(272);
+	
+	var _underscore2 = _interopRequireDefault(_underscore);
+	
+	var WordList = _react2["default"].createClass({
+	    displayName: "WordList",
+	
+	    mixins: [_reactAddonsLinkedStateMixin2["default"]],
+	
+	    getInitialState: function getInitialState() {
+	        return {
+	            filter: this.props.location.query.q,
+	            words: []
+	        };
+	    },
+	
+	    componentWillMount: function componentWillMount() {
+	        this.reload();
+	    },
+	
+	    componentDidUpdate: function componentDidUpdate(prevProps, prevState) {
+	        if (prevState.filter !== this.state.filter) {
+	            this.props.history.push({
+	                pathname: '/',
+	                search: '?q=' + this.state.filter
+	            });
+	        }
+	
+	        if (prevProps.location.query.q !== this.props.location.query.q) {
+	            this.reload();
+	        }
+	    },
+	
+	    reload: function reload() {
+	        jQuery.get('/api/' + (this.props.location.query.q ? '?q=' + this.props.location.query.q : ''), (function (words) {
+	            this.setState({
+	                words: words
+	            });
+	        }).bind(this));
+	    },
+	
+	    render: function render() {
+	        return _react2["default"].createElement(
+	            "ul",
+	            null,
+	            _underscore2["default"].map(this.state.words, function (word) {
+	                return _react2["default"].createElement(
+	                    "li",
+	                    { key: word },
+	                    _react2["default"].createElement(
+	                        _reactRouter.Link,
+	                        { to: "/word", query: { word: word } },
+	                        word
+	                    )
+	                );
+	            })
+	        );
+	    }
+	});
+	
+	exports["default"] = WordList;
+	module.exports = exports["default"];
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
 
 /***/ }
 /******/ ]);
