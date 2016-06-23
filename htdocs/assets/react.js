@@ -11770,7 +11770,8 @@
 	
 	        var item = {
 	            text: jQuery('#inputItem').val(),
-	            priority: jQuery('#inputPriority').val()
+	            priority: jQuery('#inputPriority').val(),
+	            resolved: false
 	        };
 	        var items = this.state.items;
 	        items.push(item);
@@ -11781,6 +11782,15 @@
 	
 	        jQuery('#inputItem').val(null);
 	        jQuery('#inputPriority').val('medium');
+	    },
+	
+	    markResolved: function markResolved(index) {
+	        var items = this.state.items;
+	        items[index].resolved = true;
+	
+	        this.setState({
+	            items: items
+	        });
 	    },
 	
 	    render: function render() {
@@ -11888,7 +11898,15 @@
 	                            "ul",
 	                            { className: "list-unstyled" },
 	                            _underscore2["default"].map(this.state.items, (function (item, key) {
-	                                return _react2["default"].createElement(_itemJsx2["default"], { key: key, priority: item.priority, text: item.text, id: key });
+	                                return _react2["default"].createElement(_itemJsx2["default"], {
+	                                    key: key,
+	                                    priority: item.priority,
+	                                    text: item.text,
+	                                    resolved: item.resolved,
+	                                    resolveFunction: (function () {
+	                                        this.markResolved(key);
+	                                    }).bind(this)
+	                                });
 	                            }).bind(this))
 	                        )
 	                    )
@@ -33091,7 +33109,9 @@
 	
 	    propTypes: {
 	        priority: _react2["default"].PropTypes.string,
-	        text: _react2["default"].PropTypes.string
+	        text: _react2["default"].PropTypes.string,
+	        resolved: _react2["default"].PropTypes.bool,
+	        resolveFunction: _react2["default"].PropTypes.func
 	    },
 	
 	    render: function render() {
@@ -33112,10 +33132,15 @@
 	
 	        return _react2["default"].createElement(
 	            "li",
-	            null,
+	            { className: this.props.resolved ? "text-muted" : "" },
 	            _react2["default"].createElement("span", { className: "fa fa-" + iconMap[this.props.priority].icon + " text-" + iconMap[this.props.priority]["class"] }),
 	            " ",
-	            this.props.text
+	            this.props.text,
+	            !this.props.resolved ? _react2["default"].createElement(
+	                "button",
+	                { className: "btn btn-xs btn-danger pull-right", onClick: this.props.resolveFunction },
+	                _react2["default"].createElement("span", { className: "fa fa-times" })
+	            ) : null
 	        );
 	    }
 	});

@@ -21,6 +21,7 @@ let TodoList = React.createClass({
         let item = {
             text: jQuery('#inputItem').val(),
             priority: jQuery('#inputPriority').val(),
+            resolved: false,
         }
         let items = this.state.items
         items.push(item)
@@ -32,8 +33,16 @@ let TodoList = React.createClass({
         jQuery('#inputItem').val(null)
         jQuery('#inputPriority').val('medium')
     },
-    
 
+    markResolved: function (index) {
+        let items = this.state.items
+        items[index].resolved = true
+
+        this.setState({
+            items: items
+        })
+    },
+    
     render: function () {
         return (<div>
             <nav className="navbar navbar-default">
@@ -77,7 +86,15 @@ let TodoList = React.createClass({
                     <div className="col-sm-12">
                         <ul className="list-unstyled">
                             {_.map(this.state.items, (function (item, key) {
-                                return (<Item key={key} priority={item.priority} text={item.text} id={key} />)
+                                return (<Item
+                                    key={key}
+                                    priority={item.priority}
+                                    text={item.text}
+                                    resolved={item.resolved}
+                                    resolveFunction={(function () {
+                                        this.markResolved(key)
+                                    }).bind(this)}
+                                />)
                             }).bind(this))}
                         </ul>
                     </div>

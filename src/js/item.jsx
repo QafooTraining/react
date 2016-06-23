@@ -6,6 +6,8 @@ let Item= React.createClass({
     propTypes: {
         priority: React.PropTypes.string,
         text: React.PropTypes.string,
+        resolved: React.PropTypes.bool,
+        resolveFunction: React.PropTypes.func,
     },
 
     render: function () {
@@ -24,8 +26,13 @@ let Item= React.createClass({
             },
         }
 
-        return (<li>
+        return (<li className={this.props.resolved ? "text-muted" : ""}>
             <span className={"fa fa-" + iconMap[this.props.priority].icon + " text-" + iconMap[this.props.priority].class} /> {this.props.text}
+            {!this.props.resolved ?
+            <button className="btn btn-xs btn-danger pull-right" onClick={this.props.resolveFunction}>
+                <span className="fa fa-times" />
+            </button>
+            : null}
         </li>)
     }
 })
