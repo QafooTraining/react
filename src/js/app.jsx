@@ -45,22 +45,30 @@ let TodoList = React.createClass({
             </nav>
 
             <div className="container">
-                <div className="row">
-                    <div className="col-sm-12 well">
+                <div className="well">
+                    <div className="row">
                         <form onSubmit={this.appendTodoItem}>
-                            <div className="form-group">
-                                <label>Item</label>
-                                <input type="text" className="form-control" id="inputItem" placeholder="I should…" />
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label>Item</label>
+                                    <input type="text" className="form-control" id="inputItem" placeholder="I should…" />
+                                </div>
                             </div>
-                            <div className="form-group">
-                                <label>Priority</label>
-                                <select defaultValue="medium" className="form-control" id="inputPriority" size="1">
-                                    <option value="high">High</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="low">Low</option>
-                                </select>
+                            <div className="col-md-3">
+                                <div className="form-group">
+                                    <label>Priority</label>
+                                    <select defaultValue="medium" className="form-control" id="inputPriority" size="1">
+                                        <option value="high">High</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="low">Low</option>
+                                    </select>
+                                </div>
                             </div>
-                            <button type="submit" className="btn btn-default">Append</button>
+                            <div className="col-md-3">
+                                <div className="form-group">
+                                    <button type="submit" className="btn btn-default">Append</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

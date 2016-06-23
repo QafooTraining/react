@@ -11809,55 +11809,71 @@
 	                { className: "container" },
 	                _react2["default"].createElement(
 	                    "div",
-	                    { className: "row" },
+	                    { className: "well" },
 	                    _react2["default"].createElement(
 	                        "div",
-	                        { className: "col-sm-12 well" },
+	                        { className: "row" },
 	                        _react2["default"].createElement(
 	                            "form",
 	                            { onSubmit: this.appendTodoItem },
 	                            _react2["default"].createElement(
 	                                "div",
-	                                { className: "form-group" },
+	                                { className: "col-md-6" },
 	                                _react2["default"].createElement(
-	                                    "label",
-	                                    null,
-	                                    "Item"
-	                                ),
-	                                _react2["default"].createElement("input", { type: "text", className: "form-control", id: "inputItem", placeholder: "I should…" })
+	                                    "div",
+	                                    { className: "form-group" },
+	                                    _react2["default"].createElement(
+	                                        "label",
+	                                        null,
+	                                        "Item"
+	                                    ),
+	                                    _react2["default"].createElement("input", { type: "text", className: "form-control", id: "inputItem", placeholder: "I should…" })
+	                                )
 	                            ),
 	                            _react2["default"].createElement(
 	                                "div",
-	                                { className: "form-group" },
+	                                { className: "col-md-3" },
 	                                _react2["default"].createElement(
-	                                    "label",
-	                                    null,
-	                                    "Priority"
-	                                ),
-	                                _react2["default"].createElement(
-	                                    "select",
-	                                    { defaultValue: "medium", className: "form-control", id: "inputPriority", size: "1" },
+	                                    "div",
+	                                    { className: "form-group" },
 	                                    _react2["default"].createElement(
-	                                        "option",
-	                                        { value: "high" },
-	                                        "High"
+	                                        "label",
+	                                        null,
+	                                        "Priority"
 	                                    ),
 	                                    _react2["default"].createElement(
-	                                        "option",
-	                                        { value: "medium" },
-	                                        "Medium"
-	                                    ),
-	                                    _react2["default"].createElement(
-	                                        "option",
-	                                        { value: "low" },
-	                                        "Low"
+	                                        "select",
+	                                        { defaultValue: "medium", className: "form-control", id: "inputPriority", size: "1" },
+	                                        _react2["default"].createElement(
+	                                            "option",
+	                                            { value: "high" },
+	                                            "High"
+	                                        ),
+	                                        _react2["default"].createElement(
+	                                            "option",
+	                                            { value: "medium" },
+	                                            "Medium"
+	                                        ),
+	                                        _react2["default"].createElement(
+	                                            "option",
+	                                            { value: "low" },
+	                                            "Low"
+	                                        )
 	                                    )
 	                                )
 	                            ),
 	                            _react2["default"].createElement(
-	                                "button",
-	                                { type: "submit", className: "btn btn-default" },
-	                                "Append"
+	                                "div",
+	                                { className: "col-md-3" },
+	                                _react2["default"].createElement(
+	                                    "div",
+	                                    { className: "form-group" },
+	                                    _react2["default"].createElement(
+	                                        "button",
+	                                        { type: "submit", className: "btn btn-default" },
+	                                        "Append"
+	                                    )
+	                                )
 	                            )
 	                        )
 	                    )
