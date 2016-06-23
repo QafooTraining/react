@@ -1,8 +1,31 @@
-======
-Agenda
-======
+=================
+React.js Workshop
+=================
 
 Simple setup for a React.js workshop
+
+Initialize
+==========
+
+Clone: https://github.com/QafooTraining/react.git / git@github.com:QafooTraining/react.git
+
+Initialize (requires working node.js & npm)::
+
+    npm install
+    sudo npm install -g grunt-cli
+
+Or (requires vagrant & ansible)::
+
+    vagrant up --provision
+
+Add new dependecies (See: https://www.npmjs.com/)::
+
+    npm install --save <packageName>
+
+Remove "^" from ``package.json`` afterwards.
+
+Agenda
+======
 
 * Setup
 
@@ -24,8 +47,8 @@ Simple setup for a React.js workshop
 
 * Filter
 
-Setup
-=====
+Deatiled VM Setup
+=================
 
 Run the following command in the root of the checkout (Requires vagrant &
 ansible)::
@@ -38,6 +61,9 @@ Then add the following line to you hosts configuration (eg. ``/etc/hosts``)::
 
 The provisioning also installs all required NPM packages and you should be able
 to view the demo stub under http://react.vm/
+
+Build Commands
+==============
 
 The box contains a basic environment to build React applications with all
 required tools. Thus you can run the following commands in
